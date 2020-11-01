@@ -5,15 +5,15 @@ let lastHole;
 let timeUp = false;
 let score = 0;
 ​
-function randTime(min, max) {   //랜덤타임을 반환
-    return Math.round(Math.random() *(max-min) + min) // Math.random은 0과 1사이의 값을 랜덤으로 가져오는 함수.
-                                                        // min과 max 사이의 값을 랜덤으로 가져옴.
+function randTime(min, max) { 
+    return Math.round(Math.random() *(max-min) + min) 
+
 }
 
 function randHole(holes) {
     const randIndex = Math.floor(Math.random() *holes.length)
     const hole = holes[randIndex]
-    if(hole === lastHole){  //이전 구멍과 현재 구명이 같을 경우 다시 랜덤으로 구멍을 가져옴
+    if(hole === lastHole){ 
         return randHole(holes)
     }
 
@@ -35,17 +35,17 @@ function peep() {
 }
 
 function startGame() {
-    scoreBoard.textContent = 0  // html에 렌더링해줄 score
-    score = 0   //javascript 내의 score
+    scoreBoard.textContent = 0  
+    score = 0  
     timeUp = false
     peep()
 
-    setTimeout(() => timeUp = true, 10000) // 10초가 지나면 timeUp이 false가 되고 게임이 끝남. // 두더지 게임 진행 시간
+    setTimeout(() => timeUp = true, 10000) 
 }
 
 function bonk(e) {
 
-    if(!e.isTrusted) return // 신뢰성 검사
+    if(!e.isTrusted) return
     this.classList.remove('up')
     score++
     scoreBoard.textContent = score
